@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCDS</title>
+    <link rel="stylesheet" href="css/app.css">
+
+      <style>
+          .completed{
+              text-decoration: line-through;
+          }
+      </style>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.js"></script>
+  </head>
+  <body>
+	  
+<!-- top bar -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Site Title</li>
+      <li><a href="#">Two</a></li>
+      <li><a href="#">Three</a></li>
+    </ul>
+  </div>
+</div>
+<br>
+<br>
+
+
+<div class="row">
+    <div class="column small-12">
+        <div id="app">
+
+
+
+            <!--@change="rateYear($key)"-->
+
+            <select v-model="company">
+                <option v-for="carrier in carriers">{{ carrier }}</option>
+            </select>
+
+            <select v-model="year">
+                <option v-for="years in rateYears">{{ years }}</option>
+            </select>
+
+            <select v-model="type">
+                <option v-for="type in serviceTypes"> {{ type }}</option>
+            </select>
+            {{ type }}
+
+       <pre>
+           {{ $data | json }}
+       </pre>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+    <script>
+        var selection = {}
+        var theRateYears = []
+        var theCurrentSelection = [];
+        var options = [
+            {company:'UPS', year: '2015', serviceTypes: ['U2015 Ground', 'Home Delivery'] },
+            {company:'UPS', year: '2014', serviceTypes: ['U2014 Ground', 'Home Delivery'] },
+            {company:'FedEx', year:'2015',serviceTypes: ['F2014 Ground', 'Home Delivery']},
+            {company:'FedEx', year:'2014',serviceTypes: ['F2014 Ground', 'Home Delivery']},
+            {company:'FedEx', year:'2013',serviceTypes: ['F2014 Ground', 'Home Delivery']}
+        ]
+
+            var app = new Vue({
+                el:'#app',
+                data:{
+                    company:'',
+                    year:'',
+                    type:''
+                },
+                computed:{
+                    carriers: function(){
+                        return _.uniq(_.pluck(options,'company'));
+                    },
+                    rateYears: function(){
+                        //add data to object that reflects selections
+                        selection.company = this.company;
+                        // for each options that contains your recently updated selection
+                        return  _.pluck(_.where(options,selection), 'year');
+                    },
+                    serviceTypes:function(){
+                        var currentSelection = {};
+                        currentSelection.company = this.company;
+                        currentSelection.year = this.year;
+                        var theServiceTypes = _.where(theData, currentSelection);
+                        _.each(theServiceTypes, function(datum){
+                            _.each(datum.serviceTypes, function(item){
+                                theCurrentSelection.push(item);
+                            })
+                        })
+                        return _.uniq(theCurrentSelection);
+
+                    }
+
+                }
+            })
+
+
+
+    </script>
+
+  <script>
+      //                test data
+      //                      var arr = [1,2,3];
+      //                      return arr;
+      //                        return this.carriers[0].serviceTypes;
+      //                        if ( = this.year){
+      //                        }
+      //                        for(var i=0; i <this.rateYear.length; i++) {
+      //                            if(this.rateYear.length = 2 ) {
+      //                                return 'this worked';
+      ////                                return this.carriers[i].rateYear;
+      //                            }
+      //                        }
+  </script>
+
+  </body>
+</html>

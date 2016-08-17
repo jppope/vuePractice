@@ -1,0 +1,179 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCDS</title>
+    <link rel="stylesheet" href="css/app.css">
+
+      <style>
+          .completed{
+              text-decoration: line-through;
+          }
+      </style>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.js"></script>
+  </head>
+  <body>
+	  
+<!-- top bar -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Site Title</li>
+      <li><a href="#">Two</a></li>
+      <li><a href="#">Three</a></li>
+    </ul>
+  </div>
+</div>
+<br>
+<br>
+
+    <!--<div class="row">-->
+        <!--<div class="columns small-12">-->
+            <!--<div id="app">-->
+                <!--&lt;!&ndash;<form action="index.html" v-on:submit.prevent="handleIt"> </form>&ndash;&gt;-->
+                <!--<counter subject="Likes" @click="Likes += 1"></counter>-->
+                <!--<counter subject="Dislikes"></counter>-->
+                <!--<pre>-->
+                    <!--{{ $data |  json }}-->
+                <!--</pre>-->
+            <!--</div>-->
+            <!--<template id="counter-template">-->
+                <!--<h1>{{ subject }}</h1>-->
+                <!--<button class="button" @click="count += 1">Increment {{ count }}</button>-->
+            <!--</template>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div id="app">-->
+
+        <!--<h1>Skill: {{ skill }}</h1>-->
+        <!--<select v-model="stuff">-->
+            <!--<option v-for="point in points">{{ point }}</option>-->
+        <!--</select>-->
+
+    <!--</div>-->
+
+
+
+
+
+<div class="row">
+    <div class="column small-12">
+
+
+
+        <div id="app">
+            <div v-for="plan in plans">
+
+                <plan :plan="plan" :active.sync="active"></plan>
+            </div>
+
+            <pre>
+                {{ $data | json }}
+            </pre>
+        </div>
+
+<template id="plan-template">
+
+
+        <span>{{ plan.name }}</span>
+        <span class="label">{{ plan.price }} /month</span>
+        <button class="button tiny success" @click="setActivePlan">Plan</button>
+
+</template>
+
+
+    </div>
+</div>
+
+
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                plans:[
+                    {name:'enterprise',price:100},
+                    {name:'Pro edition',price:75},
+                    {name:'Personal',price:25},
+                    {name:'free',price:0}
+                ],
+                active:{}
+            },
+            components:{
+                plan:{
+                    template: '#plan-template',
+                    props:['plan','active'],
+                    data: function(){
+
+                    },
+                    methods:{
+                        setActivePlan: function(){
+                            this.active = this.plan;
+                        }
+                    }
+                },
+            }
+        })
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+<!--<script>-->
+    <!--var app = new Vue({-->
+        <!--el:'#app',-->
+        <!--data:{-->
+            <!--points:[10,20,30,101],-->
+            <!--stuff:'',-->
+            <!--skill: 'beginner'-->
+        <!--},-->
+        <!--computed:{-->
+            <!--skill: function(){-->
+                <!--if(this.stuff <= 100){-->
+                    <!--return 'Beginner';-->
+                <!--}-->
+                <!--return 'Pro'-->
+            <!--}-->
+        <!--}-->
+    <!--})-->
+
+<!--</script>-->
+
+
+    <!--<script>-->
+        <!--Vue.component('counter', {-->
+            <!--template: '#counter-template',-->
+            <!--props:['subject'],-->
+            <!--data: function(){-->
+                <!--return{ count:0};-->
+            <!--}-->
+        <!--});-->
+        <!--var app = new Vue({-->
+            <!--el: '#app',-->
+            <!--data:{-->
+                <!--Likes:0,-->
+                <!--Dislikes:0-->
+            <!--},-->
+            <!--methods:{-->
+                <!--handleIt: function(){-->
+                    <!--alert("it has been handled")-->
+                <!--},-->
+                <!--counter:function(){-->
+                    <!--this.count += 1;-->
+                <!--}-->
+            <!--}-->
+        <!--});-->
+        <!-- -->
+    <!--</script>-->
+  </body>
+</html>
