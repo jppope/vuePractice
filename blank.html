@@ -18,13 +18,7 @@
 			<div class="columns medium-10 medium-offset-1">
 			<br>
 				<div id="app">
-					
-					<form action="done.html" method="post" accept-charset="utf-8" @submit.prevent="totalClicks++">
-						<button class="button" type="submit"> Submit Me! {{ totalClicks }}</button>
-					</form>
-					
-					
-					
+
 				</div>
 			</div>
 		</div>
@@ -39,17 +33,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
 		<script>
 		new Vue({
-			el:'#app',
-			data:{
-				totalClicks:''
-			},
-			methods:{
-				handleIt:function(e){
-					alert("handled. Boom!")
-					this.totalClicks++
-					e.preventDefault();
-				}
-			}
+			el:'#app'
 		})
 		</script>
     </body>

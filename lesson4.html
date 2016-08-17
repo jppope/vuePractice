@@ -12,25 +12,48 @@
 <!--         <link rel="stylesheet" href="css/main.css"> -->
         <!-- /end CSS-->
 
+			
     </head>
     <body>
 		<div class="row">
 			<div class="columns medium-10 medium-offset-1">
 			<br>
 				<div id="app">
-					
-					<form action="done.html" method="post" accept-charset="utf-8" @submit.prevent="totalClicks++">
-						<button class="button" type="submit"> Submit Me! {{ totalClicks }}</button>
-					</form>
-					
-					
-					
+					<counter title="likes"></counter>
+					<counter title="dislikes"></counter>
+					<standard-form name="Full Name"> </standard-form>
 				</div>
 			</div>
 		</div>
 
+		<template id="counter-template">
+			<h3> {{ title }}</h3>
+			<button class="button" @click="count++">Count {{ count }}</button>
+		</template>
+		
+		<template id="standard-form">
+				<form action="lesson4.html" method="post" @submit.prevent>
+					<div class="row">
+					<div class="column medium-6">
+						<label>{{ name }}
+							<input name="name">
+						</label>
+						<label>Email
+							<input name="email">
+						</label>
+						<label>Phone
+							<input name="phone">
+						</label>
+						<label>
+							did you want to leave a message
+							<textarea  name="message"></textarea>
+						</label>
+						<button type="submit" class="button">Submit</button>
+					</div>
+					</div>
+				</form>
 
-
+		</template>
 
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-essential/5.5.1/js/vendor/jquery.js"></script>
@@ -38,19 +61,22 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
 		<script>
-		new Vue({
-			el:'#app',
-			data:{
-				totalClicks:''
-			},
-			methods:{
-				handleIt:function(e){
-					alert("handled. Boom!")
-					this.totalClicks++
-					e.preventDefault();
+			Vue.component('counter',{
+				template:'#counter-template',
+				props: ["title"],
+				data:function(){
+					return { count: 0}
 				}
-			}
-		})
+			})
+			
+			Vue.component('standard-form',{
+				template:'#standard-form',
+				props:["name"]
+			})
+			
+			new Vue({
+				el:'#app'
+			})
 		</script>
     </body>
 </html>
