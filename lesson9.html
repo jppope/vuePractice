@@ -7,10 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="#">
-		<!-- CSS files -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.min.css">      
-<!--         <link rel="stylesheet" href="css/main.css"> -->
-        <!-- /end CSS-->
         
         <style>
 	        .completed{
@@ -24,18 +21,24 @@
 			<div class="columns medium-10 medium-offset-1">
 			<br>
 				<div id="app">
-					<ul>
-						<li :class="{ 'completed': task.completed }" 
-							v-for="task in tasks"
-							@click="task.completed = !task.completed">
-							{{ task.body }}
-						</li>
-					</ul>
+					
+					<tasks :list="tasks"></tasks>
+				
+					<tasks :list="otherTasks"></tasks>
+										
 				</div>
 			</div>
 		</div>
 
-
+		<template id="tasks-app">
+			<ul>
+				<li :class="{ 'completed': task.completed }" 
+					v-for="task in list"
+					@click="task.completed = !task.completed">
+					{{ task.body }}
+				</li>
+			</ul>
+		</template>
 
 
 
@@ -44,6 +47,11 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
 		<script>
+		Vue.component('tasks',{
+			template:"#tasks-app",
+			props:["list"]
+		})	
+			
 		new Vue({
 			el:'#app',
 			data:{
@@ -51,18 +59,15 @@
 					{body:'go to the store', completed:false},
 					{body:'go to the doctor', completed:false},
 					{body:'go to the bank',  completed:true} 
+				],
+				otherTasks:[
+					{body:'do something cool', completed:false},
+					{body:'fix pergola', completed:true},
+					{body:'get kicked out of NB',  completed:false} 
 				]
 			},
 
-		})
-		
-/*
-				methods:{
-				toggleCompletedFor:function(task){
-					task.completed = !task.completed;
-				}
-			}
-*/	
+		})		
 
 		</script>
     </body>
