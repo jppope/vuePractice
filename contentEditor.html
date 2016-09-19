@@ -26,13 +26,13 @@
 							<div class="callout" style="padding:20px;">
 								<div class="row">
 									<label>Keyword
-										<input type="text" name="keyword" v-model="keyword">
+										<input type="text" v-model="keyword">
 									</label>
 								</div>
 								<div class="row">
 									<div id="title">
 										<label>Title
-											<input type="text" name="keyword" v-model="title">
+											<input type="text" v-model="title" @keyup.tab="titleKeyword">
 										</label>
 									</div>
 								</div>
@@ -40,7 +40,7 @@
 						</div>
 						<div class="column medium-4">
 							<div class="keyword">
-								<h4>Keyword in title: {{ titleKeyword }}
+								<h4>Keyword in title:
 							</div>
 						</div>
 					</div>
@@ -66,8 +66,10 @@
 				keyword: '',
 				title:'',	
 			},
-			computed:{
+			methods:{
 				titleKeyword:function(){
+					console.log("hello keyword")
+/*
 					var keyword = this.keyword;
 					var title = this.title;
 					console.log(title);
@@ -77,6 +79,7 @@
 							return value;
 						}
 					}
+*/
 					
 /*
 					if(title.filter(hasKeyword) != -1){
