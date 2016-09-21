@@ -39,7 +39,7 @@
 								<div class="row">
 									<div id="title">
 										<label>Body
-											<textarea v-model="title" rows="6"></textarea>
+											<textarea v-model="body" rows="6"></textarea>
 										</label>
 									</div>
 								</div>
@@ -49,10 +49,10 @@
 							<div class="callout success">
 								<div class="keyword">
 									<h4>
-										<span v-if="titleKeyword">
+										<span v-show="titleKeyword == false">
 											<i class="fa fa-square "></i>
 										</span>
-										<span v-else="titleKeyword">
+										<span v-show="titleKeyword == true">
 											<i class="fa fa-check-square"></i>
 										</span> 
 										
@@ -81,25 +81,28 @@
 			el:'#app',
 			data:{
 				keyword: '',
-				title:''
-					
+				title:'',
+				body:''
 			},
 			computed:{
 				titleKeyword:function(){
+					
 					var keyword = this.keyword.split(" ");
 					var title = this.title.split(" ");
-					
-					
-					
-					function hasKeyword(value){
-						if(value == keyword){
-							return value;
-						}
-					}		
 
-					if(title.filter(hasKeyword) != -1){
+					function hasKeyword(value){if(value == keyword){return value;}}		
+
+					if(title.filter(
+						function hasKeyword(value){
+							if(value == keyword){
+								return value;
+							}
+						}	
+					).length > 0){
+						console.log("match")
 						return true;
-					}
+					} 
+					return false;
 					
 				}
 			}
