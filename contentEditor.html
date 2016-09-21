@@ -32,15 +32,32 @@
 								<div class="row">
 									<div id="title">
 										<label>Title
-											<input type="text" v-model="title" @keyup.tab="titleKeyword">
+											<input type="text" v-model="title">
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<div id="title">
+										<label>Body
+											<textarea v-model="title" rows="6"></textarea>
 										</label>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="column medium-4">
-							<div class="keyword">
-								<h4>Keyword in title:
+							<div class="callout success">
+								<div class="keyword">
+									<h4>
+										<span v-if="titleKeyword">
+											<i class="fa fa-square "></i>
+										</span>
+										<span v-else="titleKeyword">
+											<i class="fa fa-check-square"></i>
+										</span> 
+										
+										Keyword in title</h4>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -64,28 +81,25 @@
 			el:'#app',
 			data:{
 				keyword: '',
-				title:'',	
+				title:''
+					
 			},
-			methods:{
+			computed:{
 				titleKeyword:function(){
-					console.log("hello keyword")
-/*
-					var keyword = this.keyword;
-					var title = this.title;
-					console.log(title);
+					var keyword = this.keyword.split(" ");
+					var title = this.title.split(" ");
+					
+					
 					
 					function hasKeyword(value){
 						if(value == keyword){
 							return value;
 						}
-					}
-*/
-					
-/*
+					}		
+
 					if(title.filter(hasKeyword) != -1){
 						return true;
 					}
-*/
 					
 				}
 			}
