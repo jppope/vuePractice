@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      You may also want to checkout
-    </p>
+    <toolbar></toolbar>
+    <Contacts-list></Contacts-list>
+    <editor></editor>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello';
+import Toolbar from './components/Toolbar.vue'
+import ContactsList from './components/ContactsList.vue'
+import Editor from './components/Editor.vue'
 
 export default {
   components: {
-    Hello,
-  },
-};
+    Toolbar,
+    ContactsList,
+    Editor
+  }
+}
 </script>
 
 <style>
