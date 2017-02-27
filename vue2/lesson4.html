@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body >
+	<div id="root">
+	{{ names | json }}
+	<input type="text" name="" v-model="newName">
+	<button @click="addName"> Button</button>
+	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.js"></script>
+<script> 
+
+new Vue({
+	el:"#root",
+	data: {
+		newName:'',
+		names: ["one", "two", "three"]
+	},
+	methods: {
+		addName(){
+			this.names.push(this.newName);
+			this.newName = '';
+		}
+	}
+
+})
+</script>
+</body>
+</html>

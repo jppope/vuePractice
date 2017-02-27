@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body >
+	<div id="root">
+		<input type="text" name="" id="input" v-model="message"><br>
+		the value of the input is: {{ message }}
+	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.js"></script>
+<script> 
+
+new Vue({
+	el: '#root',
+	data: {
+		message: 'hello world'
+	}
+})
+
+</script>
+</body>
+</html>
